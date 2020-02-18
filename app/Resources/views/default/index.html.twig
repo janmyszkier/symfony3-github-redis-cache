@@ -13,6 +13,11 @@
 
                     Your application is now ready. You can start working on it at:
                     <code>{{ base_dir }}</code>
+
+                    Your issues are:
+                    {% for issue in issues %}
+                        <li>#{{ issue.number }} - {{ issue.title }}</li>
+                    {% endfor %}
                 </p>
             </div>
 
