@@ -43,11 +43,7 @@ class RefreshRedisCacheCommand extends ContainerAwareCommand
             $expiry = $cacheEntry->getStaleAt()->getTimestamp();
             $remainingSeconds = $expiry-time();
 
-            if($remainingSeconds === -2){
-                continue;
-            } elseif($remainingSeconds === -1){
-                $output->writeln($key.' is immortal');
-            } elseif($remainingSeconds < 300 ){
+            if($remainingSeconds < 300 ){
                 $output->writeln($key.' should be recached ('.$remainingSeconds.' s left)');
             } else {
                 $output->writeln($key.' should NOT be recached ('.$remainingSeconds.' s left)');
