@@ -27,7 +27,7 @@ class GithubCacheStrategy extends PrivateCacheStrategy
         if($response->getStatusCode() !== 403){
             $remaining = $response->getHeader('X-RateLimit-Remaining');
             if($remaining == 0) {
-                $time = $response->getHeader('X-RateLimit-Reset');
+                $time = $response->getHeader('X-RateLimit-Reset')[0];
                 return new CacheEntry($request, $response, new \DateTime($time));
             }
         }
